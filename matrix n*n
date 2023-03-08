@@ -1,0 +1,207 @@
+#include<iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+int  get_arrey(int a[10][10],int n)
+{
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			cout << "a[" << i << "][" << j << "]=";
+			cin >> a[i][j];
+		}
+	}
+	cout << "***************************************************************************" << endl;
+	return 0;
+}
+int max_min_arrey(int a[10][10],int n)
+{
+	int max, min;
+	max = a[0][0];
+	min = a[0][0];
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (a[i][j]>max)
+			{
+				max = a[i][j];
+			}
+			if (a[i][j] < min)
+			{
+				min = a[i][j];
+			}
+		}
+	}
+	cout << "MAX = " << max << "\n" << "MIN = " << min << endl;
+	cout << "***************************************************************************" << endl;
+	return 0;
+}
+int average_arrey(int a[10][10],int n)
+{
+	float avg = 0, number = 0;
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			avg += a[i][j];
+			number++;
+		}
+	}
+	cout << "average = " << avg / number << endl;
+	cout << "***************************************************************************" << endl;
+	return 0;
+}
+int Triangular_top_array(int a[10][10],int n)
+{
+	int g = 0, h = 0;
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (i == j)
+			{
+				if (a[i][j] == 0)
+				{
+					g++;
+				}
+			}
+			if (i<j)
+			{
+				if (a[i][j] == 0)
+				{
+					g++;
+				}
+			}
+			if (i>j)
+			{
+				if (a[i][j] != 0)
+				{
+					h++;
+				}
+			}
+		}
+	}
+	if (g==0 && h==0)
+	{
+		cout << "array is triangular top" << endl;
+		cout << "***************************************************************************" << endl;
+	}
+	else
+	{
+		cout << "array is not triangular top" << endl;
+		cout << "***************************************************************************" << endl;
+	}
+	return 0;
+}
+int Triangular_bottom_array(int a[10][10], int n)
+{
+	int g = 0, h = 0;
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (i == j)
+			{
+				if (a[i][j] == 0)
+				{
+					g++;
+				}
+			}
+			if (i>j)
+			{
+				if (a[i][j] == 0)
+				{
+					g++;
+				}
+			}
+			if (i<j)
+			{
+				if (a[i][j] != 0)
+				{
+					h++;
+				}
+			}
+		}
+	}
+	if (g == 0 && h == 0)
+	{
+		cout << "array is triangular bottom" << endl;
+		cout << "***************************************************************************" << endl;
+	}
+	else
+	{
+		cout << "array is not triangular bottom" << endl;
+		cout << "***************************************************************************" << endl;
+	}
+	return 0;
+}
+int change_line_column_array(int a[10][10],int n)
+{
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			int b;
+			b = a[i][j];
+			a[i][j] = a[j][i];
+			a[j][i] = b;
+		}
+	}
+	cout << "***************************************************************************" << endl;
+	return 0;
+}
+/*
+int determinan(int a[10][10], int n)
+{
+	if (n == 2)
+	{
+		return a[0][0] * a[1][1] - a[1][0] * a[0][1];
+	}
+	else
+	{
+		int c[10][10], det = 0, sign;
+		for (int w = 0;w < n;w++)
+		{
+			int x = 0;
+			for (int i = 1;i < n;i++)
+			{
+				int y = 0;
+				for (int j = 0;j < n;j++)
+				{
+					if (j != w)
+					{
+						c[x][y] = a[i][j];
+						y++;
+					}
+				}
+				x++;
+			}
+		}
+		if (w % 2 != 0)
+		{
+			sign = -1;
+		}
+		else
+		{
+			sign = 1;
+		}
+		det += c[0][w] * (sign)* determinan(c, n - 1);
+	}
+	return det;
+}
+*/
+int main()
+{
+	int f[10][10];
+	cout << "Enter array : " << endl;
+	get_arrey(f,3);
+	Triangular_bottom_array(f, 3);
+	Triangular_top_array(f, 3);
+	max_min_arrey(f, 3);
+	average_arrey(f, 3);
+	cout << "change_line_column_array : " << endl;
+	change_line_column_array(f, 3);
+	return 0;
+}
