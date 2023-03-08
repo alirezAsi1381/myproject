@@ -1,0 +1,99 @@
+#include<iostream>
+#include<cmath>
+#include<cstring>
+using namespace std;
+struct student
+{
+	char name[30];
+	float grade[10];
+	float avg;
+};
+void get_student(student list[], int n)
+{
+	for (int i = 0;i < n;i++)
+	{
+		cout << "list[" << i << "].name= ";
+	cin >> list[i].name;
+	for (int j = 0;j < 10;j++)
+	{
+		cout << "list[" << i << "].grade[" << j << "]= ";
+		cin >> list[i].grade[j];
+	}
+	cout << "list[" << i << "].avg= ";
+	cin >> list[i].avg;
+	cout << "****************************************************************" << endl;
+	}
+}
+int Calculate_average(student list[],int n)
+{
+	for (int i = 0;i < n;i++)
+	{
+		float avge = 0;
+		for (int j = 0;j < 10;j++)
+		{
+			avge += list[i].grade[j];
+		}
+		cout << "list[" << i << "].avg= " << avge / 10 << endl;
+	}
+	cout << "*****************************************************************" << endl;
+	return 0;
+}
+void get_grades(student list[],int n)
+{
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < 10;j++)
+		{
+			cout << "list[" << i << "].grade[" << j << "]= ";
+			cin >> list[i].grade[j];
+		}
+		cout << "****************************************************************" << endl;
+	}
+}
+int Find_top_student(student list[],int n)
+{
+	float best_avg = list[0].avg;
+	for (int i = 1;i < n;i++)
+	{
+		if (list[i].avg > best_avg)
+		{
+			best_avg = list[i].avg;
+		}
+	}
+	for (int i = 0;i < n;i++)
+	{
+		if (list[i].avg == best_avg)
+		{
+			cout <<"Top student : \n Name : " << list[i].name << "\n" << "Average : " << list[i].avg << endl;
+		}
+	}
+	cout << "****************************************************************" << endl;
+	return 0;
+}
+int Search_student(student list[],int n,char p[])
+{
+	for (int i = 0;i < n;i++)
+	{
+		if (strcmp(list[i].name, p) == 0)
+		{
+			cout << "Student Name : " << list[i].name << "\n" << "Average : " << list[i].avg << endl;
+		}
+	}
+	return -4;
+}
+int main()
+{
+	student list[2];
+	cout << "Enter grades : \n";
+	get_grades(list, 2);
+	cout << "Calculate_averag : \n";
+	Calculate_average(list, 2);
+	cout << "Enter Name and grades and average students : \n";
+	get_student(list, 2);
+	Find_top_student(list, 2);
+	char p[30];
+	cout << "serch a student(Enter name) : ";
+	cin >> p;
+	Search_student(list, 2, p);
+	return 0;
+}
